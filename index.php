@@ -15,13 +15,26 @@ function getDOMNodeFrom($url, $nodename)
 
 function findPHPUser($username)
 {
-    $retval = @file_get_contents("https://master.php.net/fetch/user.php?username=" . $username);
+    $opts = array("ignore_errors" => true);
+    $ctx = stream_context_create(array("http" => $opts));
+    $token = getenv("TOKEN");
+    $retval = @file_get_contents("http://local.master.php.net/fetch/user.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
     if (!$retval) {
-        list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);
+        if (isset($http_response_header) && $http_response_header) {
+            list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);
+        } else {
+            $error   = error_get_last();
+            // Remove the function name, arguments and all that stuff... we 
+            // really only care about whatever comes after the last colon
+            $message = explode(":", $error["message"]);
+            $errmsg  = array_pop($message);
+        }
         error($errmsg);
-        exit;
     }
     $json = json_decode($retval, true);
+    if (!is_array($json)) {
+        error("Something happend to master");
+    }
     if (isset($json["error"])) {
         error($json["error"]);
     }

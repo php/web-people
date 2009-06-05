@@ -18,7 +18,7 @@ function findPHPUser($username)
     $opts = array("ignore_errors" => true);
     $ctx = stream_context_create(array("http" => $opts));
     $token = getenv("TOKEN");
-    $retval = @file_get_contents("http://local.master.php.net/fetch/user.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
+    $retval = @file_get_contents("https://master.php.net/fetch/user.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
     if (!$retval) {
         if (isset($http_response_header) && $http_response_header) {
             list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);

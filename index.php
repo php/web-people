@@ -121,7 +121,7 @@ $USERNAME = filter_input(INPUT_GET, "username", FILTER_SANITIZE_ENCODED, FILTER_
         <li><a href="http://php.net/conferences/">Conferences</a></li>
         <li><a href="http://php.net/my.php">My Php.net</a></li>
     </ul>
-    <!--<p class="warning"><strong>WARNING</strong>: This is just for fun.</p>-->
+    <p class="warning"><strong>WARNING</strong>: This is obviously work in progress :)</p>
 <?php
 if (!$USERNAME) {
     echo "<p>Use the searchbox to search for usernames/names</p>";

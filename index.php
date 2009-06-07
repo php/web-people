@@ -123,6 +123,11 @@ $USERNAME = filter_input(INPUT_GET, "username", FILTER_SANITIZE_ENCODED, FILTER_
     </ul>
     <!--<p class="warning"><strong>WARNING</strong>: This is just for fun.</p>-->
 <?php
+if (!$USERNAME) {
+    echo "<p>Use the searchbox to search for usernames/names</p>";
+    echo "</body></html>";
+    exit;
+}
 $NFO      = findPHPUser($USERNAME);
 $PEAR     = findPEARUser($USERNAME);
 $GITHUB   = findGitHubUser($NFO["name"]);

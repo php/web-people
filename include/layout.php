@@ -22,10 +22,10 @@ function site_header($title) {
 
 <body>
     <h1 id="header"><a href="http://php.net/index.php">PHP: Hypertext Preprocessor</a> - <a href="http://people.php.net/index.php" rel="home">Developers Profile pages</a></h1>
-    <div id="searchbox">
+    <form id="searchbox" method="get" action="user.php">
         <label for="search">User search</label>
-        <input type="text" name="q" id="search" />
-    </div>
+        <input type="text" name="username" id="search" />
+    </form>
     <script type="text/javascript" src="js/search.js"></script>
     <ul id="mainmenu">
         <li><a href="http://php.net/downloads.php">Downloads</a></li>

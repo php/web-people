@@ -12,7 +12,7 @@ $('#search').autocomplete({
     maxHeight:400,
     width:300,
     fnFormatResult: fnFormatSearchResult,
-    onSelect: function(value, data){ window.location = "?username=" + users[value]["username"]; },
+    onSelect: function(value, data){ window.location = "user.php?username=" + users[value]["username"]; },
     lookup: lookup
 });
 

@@ -97,10 +97,18 @@ $USERNAME = filter_input(INPUT_GET, "username", FILTER_SANITIZE_ENCODED, FILTER_
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link type="text/css" media="all" rel="stylesheet" href="styles.css" />
     <link rel="shortcut icon" href="http://php.net/favicon.ico" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
+    <script type="text/javascript" src="js/userlisting.php"></script>
 </head>
 
 <body>
     <h1 id="header"><a href="http://php.net/index.php">PHP: Hypertext Preprocessor</a> - Profiles</h1>
+    <div id="searchbox">
+        <label for="search">User search</label>
+        <input type="text" name="q" id="search" />
+    </div>
+    <script type="text/javascript" src="js/search.js"></script>
     <ul id="mainmenu">
         <li><a href="http://php.net/downloads.php">Downloads</a></li>
         <li><a href="http://php.net/docs.php">Documentation</a></li>

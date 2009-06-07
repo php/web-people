@@ -3,7 +3,7 @@ body {
   font-family: Tahoma, Arial, sans-serif, serif, monospace;
   background-color: #f8f8f8;
 }
-h1#header {
+#header {
   margin: 0;
   background: url(/images/php.gif) #5a5993 no-repeat;
   padding: 20px 0 10px 150px;
@@ -12,10 +12,10 @@ h1#header {
   font-size: 1em;
   color: #B5B5E9;
 }
-h1#header a {
+#header a {
   color: #B5B5E9;
 }
-ul#mainmenu {
+#mainmenu {
   margin: 0;
   background-color: #f3f3f3;
   font-size: 0.9em;
@@ -24,16 +24,16 @@ ul#mainmenu {
   border-top: 1px solid #000000;
   border-bottom: 1px solid #D0D0D0;
 }
-ul#mainmenu li {
+#mainmenu li {
   display: inline;
   padding: 0 1%;
   border-right: 1px solid #CDCDCD;
 }
-ul#mainmenu li a {
+#mainmenu li a {
   color: #6181B7;
 }
-ul#mainmenu li:last-child {
-	border: 0px;
+#mainmenu li:last-child {
+  border: 0px;
 }
 p.warning, p.warning {
   padding: 1em;
@@ -54,8 +54,8 @@ p.error {
   color: #660000;
 }
 
-div#profile {
-	margin: 10px 100px 0 100px;
+#profile {
+  margin: 10px 100px 0 100px;
 }
 h2 {
   margin: 0;
@@ -71,3 +71,46 @@ div.note {
 div.note:last-child {
   border-bottom: 0;
 }
+#searchbox {
+  color: #B5B5E9;
+  position: absolute;
+  top: 20px;
+  right: 200px;
+}
+
+/* {{{ Stolen from http://www.devbridge.com/projects/autocomplete/jquery/ */
+.autocomplete-w1 {
+  background: url(images/shadow.png) no-repeat bottom right;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 6px 0 0 6px;
+  /* IE6 fix: */
+  _background:none; _margin:1px 0 0 0;
+}
+.autocomplete {
+  border: 1px solid #999;
+  background: #FFF;
+  cursor: default;
+  text-align: left;
+  max-height: 350px;
+  overflow: auto;
+  margin: -6px 6px 6px -6px;
+  /* IE6 specific: */
+  _height:350px;  _margin:0; _overflow-x:hidden;
+}
+.autocomplete .selected {
+  background:#F0F0F0;
+}
+.autocomplete div {
+  padding: 2px 5px;
+  white-space: nowrap;
+}
+.autocomplete strong {
+  font-weight: normal;
+  color: #3399FF;
+}
+/* }}} */
+
+/* vim: set expandtab shiftwidth=2 softtabstop=2 tabstop=2 : */
+

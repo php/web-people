@@ -83,7 +83,8 @@ function findPEARUser($username)
 
 function error($errormsg)
 {
-    echo '<p class="warning error">', $errormsg, "</p></body></html>";
+    echo '<p class="warning error">', $errormsg, "</p>";
+    site_footer();
     exit;
 }
 

@@ -1,8 +1,15 @@
+/* $Id$ */
+
 body {
   margin: 0;
   font-family: Tahoma, Arial, sans-serif, serif, monospace;
   background-color: #f8f8f8;
 }
+h2 {
+  margin: 0;
+  font-size: 1em;
+}
+
 #header {
   margin: 0;
   background: url(/images/php.gif) #5a5993 no-repeat;
@@ -15,6 +22,7 @@ body {
 #header a {
   color: #B5B5E9;
 }
+
 #mainmenu {
   margin: 0;
   background-color: #f3f3f3;
@@ -35,7 +43,30 @@ body {
 #mainmenu li:last-child {
   border: 0px;
 }
-p.warning, p.warning {
+
+#searchbox {
+  color: #B5B5E9;
+  position: absolute;
+  top: 20px;
+  right: 200px;
+}
+
+#copyright {
+  margin: 0;
+  background-color: #f3f3f3;
+  font-size: 0.9em;
+  padding: 8px 10px;
+  text-align: left;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #D0D0D0;
+}
+
+#profile {
+  margin: 10px 100px 0 100px;
+}
+
+
+.warning {
   padding: 1em;
   margin: 0px;
   border-bottom:1px solid #D0D0D0;
@@ -43,39 +74,27 @@ p.warning, p.warning {
   text-align: center;
   font-weight: bold;
   font-size:1.17em;
-}
-p.warning {
   background:#ffffff;
   color:#6F0000;
 }
-p.error {
+.error {
   background: #FFEEEE;
   border: 1px solid #666600;
   color: #660000;
 }
+.smaller {
+  font-size: .9em;
+}
 
-#profile {
-  margin: 10px 100px 0 100px;
-}
-h2 {
-  margin: 0;
-  font-size: 1em;
-}
-div.note {
+.note {
   text-indent: 30px;
   margin: 5px;
   padding: 5px 0 0 0;
   border-bottom:1px solid #D0D0D0;
   width: 600px;
 }
-div.note:last-child {
+.note:last-child {
   border-bottom: 0;
-}
-#searchbox {
-  color: #B5B5E9;
-  position: absolute;
-  top: 20px;
-  right: 200px;
 }
 
 /* {{{ Stolen from http://www.devbridge.com/projects/autocomplete/jquery/ */
@@ -112,5 +131,5 @@ div.note:last-child {
 }
 /* }}} */
 
-/* vim: set expandtab shiftwidth=2 softtabstop=2 tabstop=2 : */
+/* vim: set expandtab shiftwidth=2 softtabstop=2 tabstop=2 fdm=marker : */
 

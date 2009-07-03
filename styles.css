@@ -63,6 +63,24 @@ h2 {
 
 #profile {
   margin: 10px 100px 0 100px;
+  padding-bottom: 20px;
+}
+
+#profile dl {
+	padding-bottom: 20px;
+	margin: 0;
+}
+#profile dd {
+	line-height: 20px;
+	margin-left: 150px;
+}
+#profile dt {
+	float: left;
+	line-height: 20px;
+	color: #5A5993;
+}
+#notes {
+	color: #5A5993;
 }
 
 
@@ -90,7 +108,7 @@ h2 {
   text-indent: 30px;
   margin: 5px;
   padding: 5px 0 0 0;
-  border-bottom:1px solid #D0D0D0;
+  border-bottom:1px dashed #5A5993;
   width: 600px;
 }
 .note:last-child {
@@ -129,6 +147,7 @@ h2 {
   font-weight: normal;
   color: #3399FF;
 }
+
 /* }}} */
 
 /* vim: set expandtab shiftwidth=2 softtabstop=2 tabstop=2 fdm=marker : */

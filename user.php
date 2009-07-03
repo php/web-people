@@ -19,6 +19,11 @@ $location = isset($PEAR["long"], $PEAR["lat"]) ? $PEAR["lat"] . ", " . $PEAR["lo
 if ($email) {
     echo '<span rel="foaf:img"><img rel="foaf:img" src="https://secure.gravatar.com/avatar.php?gravatar_id=', md5($email), '" alt="Picture of ', $NFO["name"], '" height="80" width="80" /></span>';
 }
+?>
+	<dl>
+		<dt>Summary</dt>
+		<dd>
+<?php
 if ($NFO["name"]) {
     echo '<span property="foaf:name">', $NFO["name"], '</span>';
 }
@@ -30,7 +35,7 @@ if (isset($GITHUB["company"])) {
     echo ', currently working for ', $GITHUB["company"];
 }
 if (isset($GITHUB["location"])) {
-    echo ', living in';
+    echo ', living in ';
     if ($location) {
         $q = urlencode($location);
         echo '<a href="http://maps.google.com/?q=', $q, '">', $GITHUB["location"], '</a>';
@@ -39,8 +44,8 @@ if (isset($GITHUB["location"])) {
     }
 }
 ?>
-. 
-<dl>
+.
+		</dd>
 <?php if ($email) { ?>
 	<dt>Email</dt>
 	<dd><a rel="foaf:mbox" href="mailto:<?php echo $email ?>"><?php echo $email ?></a></dd>

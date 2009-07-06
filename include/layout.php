@@ -34,10 +34,10 @@ function site_header($title) {
         <li><a href="http://php.net/support.php">Getting Help</a></li>
         <li><a href="http://php.net/mailing-lists.php">Mailing Lists</a></li>
         <li><a href="http://bugs.php.net">Reporting Bugs</a></li>
-        <li><a href="http://php.net/sites.php">Php.net Sites</a></li>
+        <li><a href="http://php.net/sites.php">PHP.net Sites</a></li>
         <li><a href="http://php.net/links.php">Links</a></li>
         <li><a href="http://php.net/conferences/">Conferences</a></li>
-        <li><a href="http://php.net/my.php">My Php.net</a></li>
+        <li><a href="http://php.net/my.php">My PHP.net</a></li>
     </ul>
 <?php
 }

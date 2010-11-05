@@ -48,6 +48,9 @@ function findPHPUser($username)
 
 function findGitHubUser($fullname)
 {
+    // Hiding this for now, since nothing here can be trusted as real. Names are not unique. :)
+    // Possible todo: Allow users to customize this via master/people.
+    return false;
     $username = getDOMNodeFrom("http://github.com/api/v2/xml/user/search/" . urlencode($fullname), "username");
     if (!$username) {
         return;

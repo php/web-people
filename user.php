@@ -80,7 +80,7 @@ if (isset($GITHUB["location"])) {
 <?php foreach($NFO["notes"] as $note) { ?>
     <div class="note">
         <?php echo $note["entered"] ?>:
-        <?php echo $note["note"] ?>
+        <?php echo htmlspecialchars($note["note"], ENT_QUOTES, 'UTF-8'); ?>
     </div>
 <?php } ?>
 </div>

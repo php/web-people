@@ -45,7 +45,7 @@ function site_header($title) {
 function site_footer() {
 ?>
     <p id="copyright">
-        <a href="http://php.net/copyright.php">Copyright &copy; 2009 The PHP Group</a><br />
+        <a href="http://php.net/copyright.php">Copyright &copy; 2009-<?php echo date('Y');?> The PHP Group</a><br />
         All rights reserved.
     </p>
 </body>

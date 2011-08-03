@@ -201,7 +201,7 @@
       ret = { suggestions:[], data:[] };
       for(var i=0; i< len; i++){
         val = arr.suggestions[i];
-        if(val.toLowerCase().indexOf(q.toLowerCase()) === 0){
+        if(val.toLowerCase().indexOf(q.toLowerCase()) !== -1){
           ret.suggestions.push(val);
           ret.data.push(arr.data[i]);
         }

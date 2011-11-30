@@ -195,14 +195,15 @@
     },
 
     getSuggestionsLocal: function(q) {
-      var ret, arr, len, val;
+      var ret, arr, len, val, user;
       arr = this.options.lookup;
       len = arr.suggestions.length;
       ret = { suggestions:[], data:[] };
       for(var i=0; i< len; i++){
         val = arr.suggestions[i];
-        if(val.toLowerCase().indexOf(q.toLowerCase()) !== -1){
-          ret.suggestions.push(val);
+        user = users[val];
+        if(ret.suggestions.indexOf(user["username"]) === -1 && val.toLowerCase().indexOf(q.toLowerCase()) !== -1){
+          ret.suggestions.push(user["username"]);
           ret.data.push(arr.data[i]);
         }
       }

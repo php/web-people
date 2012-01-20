@@ -23,7 +23,7 @@ function findPHPUser($username)
     if (!$token) {
         $token = trim(file_get_contents("token"));
     }
-    $retval = @file_get_contents("https://master.php.net/fetch/user.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
+    $retval = @file_get_contents("https://master2.php.net/fetch/user.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
     if (!$retval) {
         if (isset($http_response_header) && $http_response_header) {
             list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);

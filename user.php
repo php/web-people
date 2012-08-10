@@ -3,6 +3,7 @@
 
 require "./include/layout.php";
 require "./include/misc.php";
+require "./include/karma.php";
 $USERNAME = filter_input(INPUT_GET, "username", FILTER_SANITIZE_ENCODED, FILTER_FLAG_STRIP_HIGH);
 
 site_header("PHP: Developers Profile Pages; $USERNAME");
@@ -10,6 +11,7 @@ site_header("PHP: Developers Profile Pages; $USERNAME");
 $NFO      = findPHPUser($USERNAME);
 $PEAR     = findPEARUser($USERNAME);
 $GITHUB   = findGitHubUser($NFO["name"]);
+$KARMA    = findKarma($USERNAME);
 $email    = $NFO["enable"] ? $NFO["username"].'@php.net' : "";
 $location = isset($PEAR["long"], $PEAR["lat"]) ? $PEAR["lat"] . ", " . $PEAR["long"] : null;
 ?>
@@ -73,6 +75,18 @@ if (isset($GITHUB["location"])) {
 <?php } ?>
 
 </dl>
+
+<?php if ($KARMA) { ?>
+    <?php $KARMA = formatKarma($KARMA); ?>
+    <h2 id="karma">Karma:</h2>
+    <ul>
+    <?php if (count($KARMA) > 0) { ?>
+        <?php foreach ($KARMA as $path) { ?>
+            <li><?php echo $path ?></li>
+        <?php } ?>
+    <?php } ?>
+    </ul>
+<?php } ?>
 
 <?php if ($NFO["notes"]) { ?>
     <h2 id="notes">Notes:</h2>

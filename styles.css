@@ -79,11 +79,16 @@ h2 {
 	line-height: 20px;
 	color: #5A5993;
 }
+#blurb,
 #karma,
 #notes {
 	color: #5A5993;
 }
 
+.blurb {
+  margin: 0 0 0 2em;
+  width: 600px;
+}
 
 .warning {
   padding: 1em;

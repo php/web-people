@@ -12,6 +12,7 @@ $NFO      = findPHPUser($USERNAME);
 $PEAR     = findPEARUser($USERNAME);
 $GITHUB   = findGitHubUser($NFO["name"]);
 $KARMA    = findKarma($USERNAME);
+$PROFILE  = findPHPUserProfile($USERNAME);
 $email    = $NFO["enable"] ? $NFO["username"].'@php.net' : "";
 $location = isset($PEAR["long"], $PEAR["lat"]) ? $PEAR["lat"] . ", " . $PEAR["long"] : null;
 ?>
@@ -75,6 +76,13 @@ if (isset($GITHUB["location"])) {
 <?php } ?>
 
 </dl>
+
+<?php if ($PROFILE) { ?>
+    <h2 id="blurb">About:</h2>
+    <div class="blurb">
+        <?php echo $PROFILE; ?>
+    </div>
+<?php } ?>
 
 <?php if ($KARMA) { ?>
     <?php $KARMA = formatKarma($KARMA); ?>

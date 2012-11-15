@@ -84,6 +84,37 @@ function findPEARUser($username)
     );
 }
 
+function findPHPUserProfile($username)
+{
+    $opts = array("ignore_errors" => true);
+    $ctx = stream_context_create(array("http" => $opts));
+    $token = getenv("TOKEN");
+    if (!$token) {
+        $token = trim(file_get_contents("token"));
+    }
+    $retval = @file_get_contents("http://master.php.local/fetch/user-profile.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
+    if (!$retval) {
+        if (isset($http_response_header) && $http_response_header) {
+            list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);
+        } else {
+            $error   = error_get_last();
+            // Remove the function name, arguments and all that stuff... we
+            // really only care about whatever comes after the last colon
+            $message = explode(":", $error["message"]);
+            $errmsg  = array_pop($message);
+        }
+        error($errmsg);
+    }
+    $json = json_decode($retval, true);
+    if (!is_array($json)) {
+        error("Something happend to master");
+    }
+    if (isset($json["error"])) {
+        error($json["error"]);
+    }
+    return $json["html"];
+}
+
 function error($errormsg)
 {
     echo '<p class="warning error">', $errormsg, "</p>";

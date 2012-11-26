@@ -92,7 +92,7 @@ function findPHPUserProfile($username)
     if (!$token) {
         $token = trim(file_get_contents("token"));
     }
-    $retval = @file_get_contents("http://master.php.local/fetch/user-profile.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
+    $retval = @file_get_contents("https://master.php.net/fetch/user-profile.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
     if (!$retval) {
         if (isset($http_response_header) && $http_response_header) {
             list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);

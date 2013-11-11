@@ -32,8 +32,9 @@ function refreshStaleKarma()
 
 function fetchKarma()
 {
-    $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
-    $retval = @file_get_contents("https://svn.php.net/repository/SVNROOT/global_avail", false, $ctx);
+#    $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
+#    $retval = @file_get_contents("https://svn.php.net/repository/SVNROOT/global_avail", false, $ctx);
+    $retval = @file_get_contents("/home/svn/SVNROOT/global_avail");
     if (!$retval) {
         if (isset($http_response_header) && $http_response_header) {
             list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);

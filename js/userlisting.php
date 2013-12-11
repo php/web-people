@@ -8,7 +8,7 @@ function getAllUsers() {
     if (!$token) {
         $token = trim(file_get_contents("../token"));
     }
-    $retval = @file_get_contents("https://master.php.net/fetch/allusers.php?&token=" . rawurlencode($token), false, $ctx);
+    $retval = file_get_contents("https://master.php.net/fetch/allusers.php?&token=" . rawurlencode($token), false, $ctx);
     if (!$retval) {
         return;
     }
@@ -22,27 +22,26 @@ function getAllUsers() {
     return $json;
 }
 
-if(!$json = apc_fetch("cvsusers")) {
-    $json = getAllUsers();
-    if ($json) {
-        apc_store("cvsusers", $json, 3600);
-        apc_store("cvsusers_update", $_SERVER["REQUEST_TIME"], 3600);
+if (isset($_SERVER["HTTP_IF_MODIFIED_SINCE"])) {
+    $last = strtotime($_SERVER["HTTP_IF_MODIFIED_SINCE"]);
+
+    /* Cache the user list for a week */
+    if (strtotime("+1 week", $last) > $now) {
+        header("HTTP/1.1 304 Not Modified");
+        exit;
     }
 }
-$modified = apc_fetch("cvsusers_update");
+
+$json = getAllUsers();
 
 if (!$json) { return; }
 
-$tsstring = gmdate("D, d M Y H:i:s ", $modified);
-if (isset($_SERVER["HTTP_IF_MODIFIED_SINCE"]) && $_SERVER["HTTP_IF_MODIFIED_SINCE"] == $tsstring) {
-    header("HTTP/1.1 304 Not Modified");
-    exit;
-}
-else {
-    $expires = gmdate("D, d M Y H:i:s ", strtotime("+2 months", $_SERVER["REQUEST_TIME"])) . "GMT";
-    header("Last-Modified: " . $tsstring);
-    header("Expires: $expires");
-}
+$future = strtotime("+1 week", $now);
+$tsstring = gmdate("D, d M Y H:i:s ", $now) . "GMT";
+
+header("Last-Modified: " . $tsstring);
+header("Expires: " . date(DATE_RSS, $future));
+
 
 $lookup = $user = array();
 

@@ -11,7 +11,8 @@ site_header("PHP: Developers Profile Pages; $USERNAME");
 $NFO      = findPHPUser($USERNAME);
 $PEAR     = findPEARUser($USERNAME);
 $GITHUB   = findGitHubUser($NFO["name"]);
-$KARMA    = findKarma($USERNAME);
+/* This stuff uses apc.. which is no longer available */
+$KARMA    = array();//findKarma($USERNAME);
 $PROFILE  = findPHPUserProfile($USERNAME);
 $email    = $NFO["enable"] ? $NFO["username"].'@php.net' : "";
 $location = isset($PEAR["long"], $PEAR["lat"]) ? $PEAR["lat"] . ", " . $PEAR["long"] : null;

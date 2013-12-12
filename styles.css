@@ -1,124 +1,148 @@
-/* $Id$ */
+/* vim: set expandtab shiftwidth=2 softtabstop=2 tabstop=2 fdm=marker : */
+
+/* {{{ widths blatantly stolen from bootstrap */
+.fullscreen {
+  width: 940px;
+}
+.fullscreen {
+  margin-right: auto;
+  margin-left: auto;
+  *zoom: 1;
+}
+.mainscreen, .secondscreen {
+  display: inline-block;
+}
+.mainscreen {
+  width: 700px;
+}
+.secondscreen {
+  width: 220px;
+}
+@media (max-width: 767px) {
+  .fullscreen {
+    width: auto;
+    padding: 0px 10px 0px 10px;
+  }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  .fullscreen {
+    width: 724px;
+  }
+  .mainscreen {
+    width: 538px;
+  }
+  .secondscreen {
+    width: 166px;
+  }
+}
+@media (min-width: 1200px) {
+  .fullscreen {
+    width: 1170px;
+  }
+  .mainscreen {
+    width: 870px;
+  }
+  .secondscreen {
+    width: 270px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .fullscreen {
+    width: 1440px;
+  }
+}
+/* }}} */
 
 body {
-  margin: 0;
+  background-color: #eeeef6;
+  color: #444;
   font-family: Tahoma, Arial, sans-serif, serif, monospace;
-  background-color: #f8f8f8;
+  background-color: #fff;
+  margin: 50px 0 0 0;
 }
-h2 {
-  margin: 0;
-  font-size: 1em;
-}
+header {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  width: 100%;
 
-#header {
-  margin: 0;
-  background: url(/images/php.gif) #5a5993 no-repeat;
-  padding: 20px 0 10px 150px;
-  height: 37px;
-  font-style: italic;
-  font-size: 1em;
-  color: #B5B5E9;
+  border-bottom: 0.25em solid #669;
+  background-color: #99c;
+  box-shadow: 0 .25em .25em rgba(0,0,0,.1);
+  z-index: 1;
 }
-#header a {
-  color: #B5B5E9;
-}
-
-#mainmenu {
-  margin: 0;
-  background-color: #f3f3f3;
-  font-size: 0.9em;
-  padding: 8px 10px;
-  text-align: center;
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #D0D0D0;
-}
-#mainmenu li {
-  display: inline;
-  padding: 0 1%;
-  border-right: 1px solid #CDCDCD;
-}
-#mainmenu li a {
-  color: #6181B7;
-}
-#mainmenu li:last-child {
-  border: 0px;
-}
-
-#searchbox {
-  color: #B5B5E9;
+footer {
+  width: 100%;
   position: absolute;
-  top: 20px;
-  right: 200px;
+  border-top: .25em solid #99C;
+  background-color: #262626;
 }
-
-#copyright {
+nav {
+  line-height: 2.5;
+}
+nav img {
+  vertical-align: middle;
+}
+nav ul {
+  display: inline-block;
+  list-style: none;
+  list-style-type: none;
   margin: 0;
-  background-color: #f3f3f3;
-  font-size: 0.9em;
-  padding: 8px 10px;
-  text-align: left;
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #D0D0D0;
 }
-
-#profile {
-  margin: 10px 100px 0 100px;
-  padding-bottom: 20px;
+nav li {
+  display: inline-block;
 }
-
-#profile dl {
-	padding-bottom: 20px;
-	margin: 0;
+nav a {
+  display: inline-block;
+  font-weight: normal;
+  padding: 0 0.75em;
+  color: #eef;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
 }
-#profile dd {
-	line-height: 20px;
-	margin-left: 150px;
+nav a:hover {
+  color: #fff;
 }
-#profile dt {
-	float: left;
-	line-height: 20px;
-	color: #5A5993;
+nav form {
+  display: inline-block;
+  width: 100%;
 }
-#blurb,
-#karma,
-#notes {
-	color: #5A5993;
+nav input {
+  width: 100%;
+  color: #333;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  text-shadow: 0 1px 0 #ffffff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+  line-height: 1.5;
 }
-
-.blurb {
-  margin: 0 0 0 2em;
-  width: 600px;
+/* Pad the #fragment below the header */
+section *[id] {
+  margin-top: -50px;
+  padding-top: 50px;
 }
-
-.warning {
-  padding: 1em;
-  margin: 0px;
-  border-bottom:1px solid #D0D0D0;
-  margin-bottom: 6px;
-  text-align: center;
-  font-weight: bold;
-  font-size:1.17em;
-  background:#ffffff;
-  color:#6F0000;
+section.fullscreen {
+  /* Force the content below the fixed header */
+  display: block;
 }
-.error {
-  background: #FFEEEE;
-  border: 1px solid #666600;
-  color: #660000;
+.secondscreen {
+  vertical-align: top;
+  display: inline-block;
+  margin-left: 10px;
 }
-.smaller {
-  font-size: .9em;
+.secondscreen .panel {
+  background: #f0f0f0;
+  border: 1px solid #e3e3e3;
+  border-radius: 2px;
 }
-
-.note {
-  text-indent: 30px;
-  margin: 5px;
-  padding: 5px 0 0 0;
-  border-bottom:1px dashed #5A5993;
-  width: 600px;
-}
-.note:last-child {
-  border-bottom: 0;
+.secondscreen a {
+  color: #333;
+  display: block;
+  padding: .75em 1em;
 }
 
 /* {{{ Stolen from http://www.devbridge.com/projects/autocomplete/jquery/ */
@@ -128,19 +152,16 @@ h2 {
   top: 0px;
   left: 0px;
   margin: 6px 0 0 6px;
-  /* IE6 fix: */
-  _background:none; _margin:1px 0 0 0;
+  z-index: 1;
 }
 .autocomplete {
   border: 1px solid #999;
   background: #FFF;
   cursor: default;
   text-align: left;
-  max-height: 350px;
+  max-height: 270px;
   overflow: auto;
   margin: -6px 6px 6px -6px;
-  /* IE6 specific: */
-  _height:350px;  _margin:0; _overflow-x:hidden;
 }
 .autocomplete .selected {
   background:#F0F0F0;
@@ -156,5 +177,18 @@ h2 {
 
 /* }}} */
 
-/* vim: set expandtab shiftwidth=2 softtabstop=2 tabstop=2 fdm=marker : */
+/* Grab attention with a warning */
+.warning {
+  background: #f9ecf2;
+  border: 1px solid #eecdde;
+
+  padding: 1em;
+  margin: 0px;
+
+  text-align: center;
+  font-weight: bold;
+  font-size:1.17em;
+
+  color: #660000;
+}
 

@@ -12,8 +12,10 @@ if ($USERNAME) {
 site_header("PHP: Developers Profile Pages");
 ?>
 
-    <p class="warning smaller"><strong>WARNING</strong>: This is obviously work in progress :)</p>
-    <p>Use the searchbox to search for usernames/names</p>
+<section class="fullscreen">
+  <p class="warning smaller"><strong>WARNING</strong>: This is obviously work in progress :)</p>
+  <p>Use the searchbox to search for usernames/names</p>
+</section>
 
 <?php
 site_footer();

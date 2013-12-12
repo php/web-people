@@ -6,7 +6,7 @@ require "./include/misc.php";
 require "./include/karma.php";
 $USERNAME = filter_input(INPUT_GET, "username", FILTER_SANITIZE_ENCODED, FILTER_FLAG_STRIP_HIGH);
 
-site_header("PHP: Developers Profile Pages; $USERNAME");
+site_header("Developers Profile Pages; $USERNAME");
 
 $NFO      = findPHPUser($USERNAME);
 $PEAR     = findPEARUser($USERNAME);
@@ -18,6 +18,7 @@ $email    = $NFO["enable"] ? $NFO["username"].'@php.net' : "";
 $location = isset($PEAR["long"], $PEAR["lat"]) ? $PEAR["lat"] . ", " . $PEAR["long"] : null;
 ?>
 
+<section class="mainscreen">
 <div about="#me" typeof="foaf:Person" id="profile">
 <?php
 if ($email) {
@@ -108,7 +109,13 @@ if (isset($GITHUB["location"])) {
 <?php } ?>
 </div>
 
+</section>
 <?php
+$SIDEBAR = <<< SIDEBAR
+    <p class="panel"><a href="https://master.php.net/manage/users.php?username=$USERNAME">Edit $USERNAME on master</a></p>
+SIDEBAR;
+
+site_panel($SIDEBAR);
 site_footer();
 // vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
 

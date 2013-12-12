@@ -117,7 +117,7 @@ function findPHPUserProfile($username)
 
 function error($errormsg)
 {
-    echo '<p class="warning error">', $errormsg, "</p>";
+    echo '<p class="warning error">', $errormsg, "</p></section>";
     site_footer();
     exit;
 }

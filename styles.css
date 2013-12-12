@@ -192,6 +192,7 @@ body {
   }
   nav ul, nav li, nav a {
     display: block;
+    padding: 0;
   }
   header {
     position: absolute;
@@ -202,7 +203,7 @@ body {
     width: auto;
     padding: 0px 10px 0px 10px;
   }
-  .mainscreen {
+  section.mainscreen {
     width: auto;
   }
   .secondscreen {

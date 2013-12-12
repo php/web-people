@@ -3,9 +3,10 @@
 
 function getDOMNodeFrom($url, $nodename)
 {
+    $content = cached($url);
     $dom = new DOMDocument;
     $dom->preserveWhiteSpace = false;
-    if (@!$dom->load($url)) {
+    if (@!$dom->loadXML($content)) {
         return;
     }
     $search = $dom->getElementsByTagName($nodename);
@@ -23,17 +24,13 @@ function findPHPUser($username)
     if (!$token) {
         $token = trim(file_get_contents("token"));
     }
-    $retval = @file_get_contents("https://master.php.net/fetch/user.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
+    $retval = cached("https://master.php.net/fetch/user.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
     if (!$retval) {
-        if (isset($http_response_header) && $http_response_header) {
-            list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);
-        } else {
-            $error   = error_get_last();
-            // Remove the function name, arguments and all that stuff... we 
-            // really only care about whatever comes after the last colon
-            $message = explode(":", $error["message"]);
-            $errmsg  = array_pop($message);
-        }
+        $error   = error_get_last();
+        // Remove the function name, arguments and all that stuff... we 
+        // really only care about whatever comes after the last colon
+        $message = explode(":", $error["message"]);
+        $errmsg  = array_pop($message);
         error($errmsg);
     }
     $json = json_decode($retval, true);
@@ -84,6 +81,23 @@ function findPEARUser($username)
     );
 }
 
+function cached($url, $options = false, $ctx = null)
+{
+    $tmpdir = sys_get_temp_dir();
+    $user = sha1($url);
+
+    $tmpfile = $tmpdir . "/" . $user;
+    if (file_exists($tmpfile) && filemtime($tmpfile) > strtotime("-1 week")) {
+        return file_get_contents($tmpfile);
+    }
+    $content = file_get_contents($url, $options, $ctx);
+    if ($content) {
+        file_put_contents($tmpfile, $content);
+    }
+
+    return $content;
+
+}
 function findPHPUserProfile($username)
 {
     $opts = array("ignore_errors" => true);
@@ -92,17 +106,13 @@ function findPHPUserProfile($username)
     if (!$token) {
         $token = trim(file_get_contents("token"));
     }
-    $retval = @file_get_contents("https://master.php.net/fetch/user-profile.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
+    $retval = cached("https://master.php.net/fetch/user-profile.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
     if (!$retval) {
-        if (isset($http_response_header) && $http_response_header) {
-            list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);
-        } else {
-            $error   = error_get_last();
-            // Remove the function name, arguments and all that stuff... we
-            // really only care about whatever comes after the last colon
-            $message = explode(":", $error["message"]);
-            $errmsg  = array_pop($message);
-        }
+        $error   = error_get_last();
+        // Remove the function name, arguments and all that stuff... we
+        // really only care about whatever comes after the last colon
+        $message = explode(":", $error["message"]);
+        $errmsg  = array_pop($message);
         error($errmsg);
     }
     $json = json_decode($retval, true);

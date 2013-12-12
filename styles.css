@@ -1,109 +1,4 @@
 /* vim: set expandtab shiftwidth=2 softtabstop=2 tabstop=2 fdm=marker : */
-/* {{{ widths blatantly stolen from bootstrap */
-.fullscreen {
-  width: 940px;
-}
-.fullscreen {
-  margin-right: auto;
-  margin-left: auto;
-  *zoom: 1;
-}
-.mainscreen, .secondscreen {
-  display: inline-block;
-}
-.mainscreen {
-  width: 700px;
-}
-.secondscreen {
-  width: 220px;
-}
-body {
-  margin: 50px 0 0 0;
-}
-#mainmenu-toggle-overlay, #mainmenu-toggle {
-    display: none;
-}
-#mainmenu-toggle:checked + nav {
-  /* This just has to be big enough to cover whatever's in nav. */
-  max-height: 50em;
-}
-@media (max-width:465px) {
-
-  #mainmenu-toggle-overlay {
-    background: #669 url(http://php.net/images/mobile-menu.png) no-repeat center center;
-    float: right;
-    display: block;
-    height: 32px;
-    width: 34px;
-    margin-top: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-  }
-  #mainmenu-toggle {
-    height: 32px;
-    width: 34px;
-    line-height: 32px;
-    margin-top: 10px;
-    margin-right: -34px;
-    float: right;
-    border-bottom: 0 none;
-    display: inline-block;
-    opacity: 0;
-  }
-  nav {
-    max-height: 0;
-    overflow: hidden;
-    display: block;
-  }
-  nav ul, nav li, nav a {
-    display: block;
-  }
-  header {
-    position: absolute;
-  }
-}
-@media (max-width: 767px) {
-  .fullscreen {
-    width: auto;
-    padding: 0px 10px 0px 10px;
-  }
-  body {
-    margin: 100px 0 0 0;
-  }
-  .secondscreen {
-    width: 100%;
-  }
-}
-@media (min-width: 768px) and (max-width: 979px) {
-  .fullscreen {
-    width: 724px;
-  }
-  .mainscreen {
-    width: 538px;
-  }
-  .secondscreen {
-    width: 166px;
-  }
-}
-@media (min-width: 1200px) {
-  .fullscreen {
-    width: 1170px;
-  }
-  .mainscreen {
-    width: 870px;
-  }
-  .secondscreen {
-    margin-left: 10px;
-    width: 270px;
-  }
-}
-
-@media (min-width: 1500px) {
-  .fullscreen {
-    width: 1440px;
-  }
-}
-/* }}} */
 
 
 body {
@@ -242,3 +137,105 @@ section.fullscreen {
   color: #660000;
 }
 
+/* {{{ widths blatantly stolen from bootstrap */
+.fullscreen {
+  width: 940px;
+  margin-right: auto;
+  margin-left: auto;
+  *zoom: 1;
+}
+.mainscreen, .secondscreen {
+  display: inline-block;
+}
+.mainscreen {
+  width: 700px;
+}
+.secondscreen {
+  width: 220px;
+}
+body {
+  margin: 50px 0 0 0;
+}
+#mainmenu-toggle-overlay, #mainmenu-toggle {
+    display: none;
+}
+#mainmenu-toggle:checked + nav {
+  /* This just has to be big enough to cover whatever's in nav. */
+  max-height: 50em;
+}
+@media (max-width:465px) {
+
+  #mainmenu-toggle-overlay {
+    background: #669 url(http://php.net/images/mobile-menu.png) no-repeat center center;
+    float: right;
+    display: block;
+    height: 32px;
+    width: 34px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  #mainmenu-toggle {
+    height: 32px;
+    width: 34px;
+    line-height: 32px;
+    margin-top: 10px;
+    margin-right: -34px;
+    float: right;
+    border-bottom: 0 none;
+    display: inline-block;
+    opacity: 0;
+  }
+  nav {
+    max-height: 0;
+    overflow: hidden;
+  }
+  nav ul, nav li, nav a {
+    display: block;
+  }
+  header {
+    position: absolute;
+  }
+}
+@media (max-width: 767px) {
+  .fullscreen {
+    width: auto;
+    padding: 0px 10px 0px 10px;
+  }
+  body {
+    margin: 100px 0 0 0;
+  }
+  .secondscreen {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  .fullscreen {
+    width: 724px;
+  }
+  .mainscreen {
+    width: 538px;
+  }
+  .secondscreen {
+    width: 166px;
+  }
+}
+@media (min-width: 1200px) {
+  .fullscreen {
+    width: 1170px;
+  }
+  .mainscreen {
+    width: 870px;
+  }
+  .secondscreen {
+    margin-left: 10px;
+    width: 270px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .fullscreen {
+    width: 1440px;
+  }
+}
+/* }}} */

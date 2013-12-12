@@ -13,6 +13,8 @@
 <body>
 
 <header>
+  <div id="mainmenu-toggle-overlay"></div>
+  <input type="checkbox" id="mainmenu-toggle">
   <nav class="fullscreen">
     <div class="mainscreen">
       <a href="/" class="home"><img src="//php.net/images/logo.php" width="48" height="24" alt="php"><span class="subdomain">people</span></a>

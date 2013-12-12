@@ -1,5 +1,4 @@
 /* vim: set expandtab shiftwidth=2 softtabstop=2 tabstop=2 fdm=marker : */
-
 /* {{{ widths blatantly stolen from bootstrap */
 .fullscreen {
   width: 940px;
@@ -20,6 +19,48 @@
 }
 body {
   margin: 50px 0 0 0;
+}
+#mainmenu-toggle-overlay, #mainmenu-toggle {
+    display: none;
+}
+#mainmenu-toggle:checked + nav {
+  /* This just has to be big enough to cover whatever's in nav. */
+  max-height: 50em;
+}
+@media (max-width:465px) {
+
+  #mainmenu-toggle-overlay {
+    background: #669 url(http://php.net/images/mobile-menu.png) no-repeat center center;
+    float: right;
+    display: block;
+    height: 32px;
+    width: 34px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  #mainmenu-toggle {
+    height: 32px;
+    width: 34px;
+    line-height: 32px;
+    margin-top: 10px;
+    margin-right: -34px;
+    float: right;
+    border-bottom: 0 none;
+    display: inline-block;
+    opacity: 0;
+  }
+  nav {
+    max-height: 0;
+    overflow: hidden;
+    display: block;
+  }
+  nav ul, nav li, nav a {
+    display: block;
+  }
+  header {
+    position: absolute;
+  }
 }
 @media (max-width: 767px) {
   .fullscreen {
@@ -64,11 +105,12 @@ body {
 }
 /* }}} */
 
+
 body {
-  background-color: #eeeef6;
   color: #444;
   font-family: Tahoma, Arial, sans-serif, serif, monospace;
   background-color: #fff;
+  height: 100%;
 }
 header {
   top: 0px;
@@ -83,7 +125,6 @@ header {
 }
 footer {
   width: 100%;
-  position: absolute;
   border-top: .25em solid #99C;
   background-color: #262626;
 }
@@ -137,6 +178,7 @@ section *[id] {
 section.fullscreen {
   /* Force the content below the fixed header */
   display: block;
+  height: 100%;
 }
 .secondscreen {
   vertical-align: top;

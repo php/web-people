@@ -18,10 +18,19 @@
 .secondscreen {
   width: 220px;
 }
+body {
+  margin: 50px 0 0 0;
+}
 @media (max-width: 767px) {
   .fullscreen {
     width: auto;
     padding: 0px 10px 0px 10px;
+  }
+  body {
+    margin: 100px 0 0 0;
+  }
+  .secondscreen {
+    width: 100%;
   }
 }
 @media (min-width: 768px) and (max-width: 979px) {
@@ -43,6 +52,7 @@
     width: 870px;
   }
   .secondscreen {
+    margin-left: 10px;
     width: 270px;
   }
 }
@@ -59,7 +69,6 @@ body {
   color: #444;
   font-family: Tahoma, Arial, sans-serif, serif, monospace;
   background-color: #fff;
-  margin: 50px 0 0 0;
 }
 header {
   top: 0px;
@@ -132,7 +141,6 @@ section.fullscreen {
 .secondscreen {
   vertical-align: top;
   display: inline-block;
-  margin-left: 10px;
 }
 .secondscreen .panel {
   background: #f0f0f0;

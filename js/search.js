@@ -11,7 +11,7 @@ $('input.search').autocomplete({
     minChars:2, 
     maxHeight:400,
     fnFormatResult: fnFormatSearchResult,
-    onSelect: function(value, data){ window.location = "user.php?username=" + users[value]["username"]; },
+    onSelect: function(value, data){ window.location = "?username=" + users[value]["username"]; },
     lookup: lookup
 });
 

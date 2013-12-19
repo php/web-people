@@ -115,7 +115,6 @@ $SIDEBAR = <<< SIDEBAR
     <p class="panel"><a href="https://master.php.net/manage/users.php?username=$USERNAME">Edit $USERNAME on master</a></p>
 SIDEBAR;
 
-site_panel($SIDEBAR);
-site_footer();
+site_footer(array("SIDEBAR" => $SIDEBAR));
 // vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
 

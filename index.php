@@ -2,6 +2,7 @@
 /* $Id$ */
 
 require "./include/layout.php";
+require "./include/misc.php";
 $USERNAME = filter_input(INPUT_GET, "username", FILTER_SANITIZE_ENCODED, FILTER_FLAG_STRIP_HIGH);
 
 if ($USERNAME) {
@@ -10,10 +11,44 @@ if ($USERNAME) {
 }
 
 site_header("PHP: Developers Profile Pages");
+$page = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT, array("options" => array("min_range" => 1))) ?: 1;
 ?>
 
-  <p class="warning smaller"><strong>WARNING</strong>: This is obviously work in progress :)</p>
-  <p>Use the searchbox to search for usernames/names</p>
+<table>
+<thead>
+    <tr>
+        <th></th>
+        <th>Username</th>
+        <th>Full name</th>
+    </tr>
+</thead>
+<tbody>
+
+<?php $x = 0 ?>
+<?php foreach (findAllUsers($page) as $x => $user): ?>
+    <tr>
+        <td class="gravatar"><img src="http://www.gravatar.com/avatar/<?php echo md5($user["username"] . "@php.net")?>.jpg" alt="Picture of <?php $user["name"] ?>" height="80" width="80" /></td>
+        <td class="username"><a href="user.php?username=<?php echo $user["username"]?>"><?php echo $user["username"] ?></a></td>
+        <td class="name"><?php echo $user["name"] ?></td>
+    </tr>
+<?php endforeach ?>
+</tbody>
+<tfoot>
+<tr>
+<th>
+    <?php if ($page): ?>
+    <a href="?page=<?php echo $page-1?>">Previous page</a></th>
+    <?php endif ?>
+</th>
+<th></th>
+<th>
+    <?php if ($x == 99): ?>
+    <a href="?page=<?php echo ++$page?>">Next page</a></th>
+    <?php endif ?>
+</th>
+</tr>
+</tfoot>
+</table>
 
 <?php
 site_footer();

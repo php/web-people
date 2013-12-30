@@ -16,6 +16,26 @@ function getDOMNodeFrom($url, $nodename)
     return $search->item(0);
 }
 
+function findAllUsers($batch) {
+    $opts = array("ignore_errors" => true);
+    $ctx = stream_context_create(array("http" => $opts));
+    $token = getenv("TOKEN");
+    if (!$token) {
+        $token = trim(file_get_contents("token"));
+    }
+    $url = "https://master.php.net/fetch/allusers.php?token=" . rawurlencode($token);
+    $retval = cached($url, false, $ctx);
+    $json = json_decode($retval, true);
+    if (!is_array($json)) {
+        error("Something happend to master");
+    }
+    if (isset($json["error"])) {
+        error($json["error"]);
+    }
+
+    $batch *= 100;
+    return array_slice($json, $batch, 100);
+}
 function findPHPUser($username)
 {
     $opts = array("ignore_errors" => true);

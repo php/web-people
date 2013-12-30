@@ -68,18 +68,6 @@ function findGitHubUser($fullname)
     return $retval;
 }
 
-function findPEARUser($username)
-{
-    $geo = getDOMNodeFrom("http://pear.php.net/map/locationREST.php?handle=" . $username, "based_near");
-    if (!$geo) {
-        return;
-    }
-    return array(
-        "lat"  => $geo->getAttribute("geo:lat"),
-        "long" => $geo->getAttribute("geo:long"),
-    );
-}
-
 function cached($url, $options = false, $ctx = null)
 {
     $tmpdir = sys_get_temp_dir();

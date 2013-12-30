@@ -9,12 +9,10 @@ $USERNAME = filter_input(INPUT_GET, "username", FILTER_SANITIZE_ENCODED, FILTER_
 site_header("Developers Profile Pages; $USERNAME");
 
 $NFO      = findPHPUser($USERNAME);
-$PEAR     = findPEARUser($USERNAME);
 $GITHUB   = findGitHubUser($NFO["name"]);
 $KARMA    = findKarma($USERNAME);
 $PROFILE  = findPHPUserProfile($USERNAME);
-$email    = $NFO["enable"] ? $NFO["username"].'@php.net' : "";
-$location = isset($PEAR["long"], $PEAR["lat"]) ? $PEAR["lat"] . ", " . $PEAR["long"] : null;
+$email    = $NFO["username"].'@php.net';
 ?>
 
 <section class="mainscreen">
@@ -70,12 +68,6 @@ if (isset($GITHUB["location"])) {
 	<dd><?php echo $GITHUB["location"] ?></dd>
 <?php } ?>
 
-<?php if (isset($PEAR["long"], $PEAR["lat"])) { ?>
-    <dt>Geo location</dt>
-	<?php $q = urlencode($location) ?>
-    <dd><a href="http://maps.google.com/?q=<?php echo $q ?>"><span property="geo:lat"><?php echo $PEAR["lat"]?></span>, <span property="geo:long"><?php echo $PEAR["long"]?></span></a></dt>
-<?php } ?>
-
 </dl>
 
 <?php if ($PROFILE) { ?>
@@ -97,14 +89,14 @@ if (isset($GITHUB["location"])) {
     </ul>
 <?php } ?>
 
-<?php if ($NFO["notes"]) { ?>
+<?php if (!empty($NFO["notes"])) { ?>
     <h2 id="notes">Notes:</h2>
-<?php } ?>
-<?php foreach($NFO["notes"] as $note) { ?>
+    <?php foreach($NFO["notes"] as $note) { ?>
     <div class="note">
         <?php echo $note["entered"] ?>:
         <?php echo htmlspecialchars($note["note"], ENT_QUOTES, 'UTF-8'); ?>
     </div>
+    <?php } ?>
 <?php } ?>
 </div>
 

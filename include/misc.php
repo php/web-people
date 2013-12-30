@@ -24,15 +24,8 @@ function findPHPUser($username)
     if (!$token) {
         $token = trim(file_get_contents("token"));
     }
-    $retval = cached("https://master.php.net/fetch/user.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
-    if (!$retval) {
-        $error   = error_get_last();
-        // Remove the function name, arguments and all that stuff... we 
-        // really only care about whatever comes after the last colon
-        $message = explode(":", $error["message"]);
-        $errmsg  = array_pop($message);
-        error($errmsg);
-    }
+    $url = "https://master.php.net/fetch/allusers.php?token=" . rawurlencode($token);
+    $retval = cached($url, false, $ctx);
     $json = json_decode($retval, true);
     if (!is_array($json)) {
         error("Something happend to master");
@@ -40,7 +33,13 @@ function findPHPUser($username)
     if (isset($json["error"])) {
         error($json["error"]);
     }
-    return $json;
+
+    foreach($json as $k) {
+        if ($k["username"] == $username) {
+            return $k;
+        }
+    }
+    error("No such user");
 }
 
 function findGitHubUser($fullname)

@@ -1,13 +1,12 @@
 <?php
 
-define("KARMA_FILE", sys_get_temp_dir() . "/karma.txt");
 function findKarma($username)
 {
-    refreshStaleKarma();
-    $karma = json_decode(file_get_contents(KARMA_FILE), true);
+    $karma = fetchKarma();
     if ($karma === FALSE) {
         return false;
     }
+
     $mykarma = $karma[$username];
     $retval = array(
         "avail"   => explode(PATH_SEPARATOR, $mykarma["avail"]),
@@ -16,34 +15,11 @@ function findKarma($username)
     return $retval;
 }
 
-function refreshStaleKarma()
-{
-    $karma_updated = filemtime(KARMA_FILE);
-    $timezone      = timezone_open("UTC");
-    $is_expired    = (date_create("@$karma_updated", $timezone) < date_create("1 day ago", $timezone));
-    if ($is_expired) {
-        $karma = fetchKarma();
-        file_put_contents(KARMA_FILE, json_encode($karma));
-    }
-}
-
 function fetchKarma()
 {
     $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
-    $retval = @file_get_contents("https://svn.php.net/repository/SVNROOT/global_avail", false, $ctx);
-    if (!$retval) {
-        if (isset($http_response_header) && $http_response_header) {
-            list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);
-        } else {
-            $error   = error_get_last();
-            // Remove the function name, arguments and all that stuff... we
-            // really only care about whatever comes after the last colon
-            $message = explode(":", $error["message"]);
-            $errmsg  = array_pop($message);
-        }
-        error($errmsg);
-    }
-    $karma = parseKarma(explode("\n", $retval));
+    $content = cached("https://svn.php.net/repository/SVNROOT/global_avail", false, $ctx);
+    $karma = parseKarma(explode("\n", $content));
     return $karma;
 }
 

@@ -1,40 +1,36 @@
 <?php
 
+define("KARMA_FILE", sys_get_temp_dir() . "/karma.txt");
 function findKarma($username)
 {
     refreshStaleKarma();
-    $karma = apc_fetch("karma_".$username);
+    $karma = json_decode(file_get_contents(KARMA_FILE), true);
     if ($karma === FALSE) {
         return false;
     }
-    $karma = array(
-        "avail"   => explode(PATH_SEPARATOR, $karma["avail"]),
-        "unavail" => explode(PATH_SEPARATOR, $karma["unavail"]),
+    $mykarma = $karma[$username];
+    $retval = array(
+        "avail"   => explode(PATH_SEPARATOR, $mykarma["avail"]),
+        "unavail" => explode(PATH_SEPARATOR, $mykarma["unavail"]),
     );
-    return $karma;
+    return $retval;
 }
 
 function refreshStaleKarma()
 {
-    $karma_updated = (int) apc_fetch("global_avail_update");
+    $karma_updated = filemtime(KARMA_FILE);
     $timezone      = timezone_open("UTC");
     $is_expired    = (date_create("@$karma_updated", $timezone) < date_create("1 day ago", $timezone));
     if ($is_expired) {
         $karma = fetchKarma();
-        if ($karma) {
-            apc_store("global_avail_update", $_SERVER["REQUEST_TIME"]);
-            foreach ($karma as $user => $avails) {
-                apc_store("karma_".$user, $avails);
-            }
-        }
+        file_put_contents(KARMA_FILE, json_encode($karma));
     }
 }
 
 function fetchKarma()
 {
-#    $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
-#    $retval = @file_get_contents("https://svn.php.net/repository/SVNROOT/global_avail", false, $ctx);
-    $retval = @file_get_contents("/home/svn/SVNROOT/global_avail");
+    $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
+    $retval = @file_get_contents("https://svn.php.net/repository/SVNROOT/global_avail", false, $ctx);
     if (!$retval) {
         if (isset($http_response_header) && $http_response_header) {
             list($protocol, $errcode, $errmsg) = explode(" ", $http_response_header[0], 3);

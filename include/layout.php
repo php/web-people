@@ -16,7 +16,6 @@ function site_header($title) {
 
 function site_footer($config = array()) {
     $JS = array(
-        "//ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js",
         "//people.php.net/js/jquery.autocomplete.min.js",
         "//people.php.net/js/userlisting.php",
         "//people.php.net/js/search.js",

@@ -8,7 +8,7 @@ function site_header($title) {
         array("href" => "/user.php", "text" => "Users"),
         array("href" => "https://master.php.net/manage/users.php", "text" => "Master"),
     );
-    $CSS[] = "/shared/styles/user-autocomplete.css";
+    $CSS[] = "/styles/user-autocomplete.css";
     $SEARCH = array("method" => "get", "action" => "user.php", "placeholder" => "Search profiles", "name" => "username");
     include dirname(__FILE__) . "/../shared/templates/header.inc";
     echo '<section class="mainscreen">';

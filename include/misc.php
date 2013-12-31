@@ -132,6 +132,21 @@ function findPHPUserProfile($username)
     return $json["html"];
 }
 
+function findAssignedBugs($username)
+{
+    $url = "https://bugs.php.net/rss/search.php?status=Open&cmd=display&assign=$username";
+    $contents = cached($url);
+    $sxe = simplexml_load_string($contents);
+    $items = array();
+    foreach($sxe->item as $item) {
+        $items[] = array(
+            "title" => $item->title,
+            "link"  => $item->link,
+        );
+    }
+    return $items;
+}
+
 function error($errormsg)
 {
     echo '<p class="warning error">', $errormsg, "</p></section>";

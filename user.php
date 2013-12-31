@@ -12,6 +12,7 @@ $NFO      = findPHPUser($USERNAME);
 $GITHUB   = findGitHubUser($NFO["name"]);
 $KARMA    = findKarma($USERNAME);
 $PROFILE  = findPHPUserProfile($USERNAME);
+$BUGS     = findAssignedBugs($USERNAME);
 $email    = $NFO["username"].'@php.net';
 ?>
 
@@ -85,6 +86,15 @@ if (isset($GITHUB["location"])) {
         <?php foreach ($KARMA as $path) { ?>
             <li><?php echo $path ?></li>
         <?php } ?>
+    <?php } ?>
+    </ul>
+<?php } ?>
+
+<?php if ($BUGS) { ?>
+    <h2 id="bugs">Assigned (open) bugs:</h2>
+    <ul>
+    <?php foreach ($BUGS as $bug) { ?>
+        <li><a href="<?php echo $bug["link"]?>"><?php echo $bug["title"] ?></a></li>
     <?php } ?>
     </ul>
 <?php } ?>

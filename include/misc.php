@@ -33,8 +33,8 @@ function findAllUsers($batch) {
         error($json["error"]);
     }
 
-    $batch *= 100;
-    return array_slice($json, $batch, 100);
+    $batch *= 50;
+    return array_slice($json, $batch, 50);
 }
 function findPHPUser($username)
 {

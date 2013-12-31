@@ -41,6 +41,7 @@ $tsstring = gmdate("D, d M Y H:i:s ", $now) . "GMT";
 
 header("Last-Modified: " . $tsstring);
 header("Expires: " . date(DATE_RSS, $future));
+header("Content-Type: text/javascript");
 
 
 $lookup = $user = array();

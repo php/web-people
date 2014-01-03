@@ -1,9 +1,8 @@
 <?php
 /* $Id$ */
 
-function site_header($title) {
+function site_header($TITLE) {
     $SUBDOMAIN = "people";
-    $TITLE = "Header";
     $LINKS = array(
         array("href" => "/user.php", "text" => "Users"),
         array("href" => "https://master.php.net/manage/users.php", "text" => "Master"),

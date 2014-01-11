@@ -20,7 +20,7 @@ $email    = $NFO["username"].'@php.net';
 <div about="#me" typeof="foaf:Person" id="profile">
 <?php
 if ($email) {
-    echo '<span rel="foaf:img"><img rel="foaf:img" src="http://www.gravatar.com/avatar/', md5($email), '.jpg" alt="Picture of ', $NFO["name"], '" height="80" width="80" /></span>';
+    echo '<span rel="foaf:img"><img rel="foaf:img" src="https://www.gravatar.com/avatar/', md5($email), '.jpg" alt="Picture of ', $NFO["name"], '" height="80" width="80" /></span>';
 }
 ?>
 	<dl>

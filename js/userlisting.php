@@ -22,6 +22,7 @@ function getAllUsers() {
     return $json;
 }
 
+$now = $_SERVER["REQUEST_TIME"];
 if (isset($_SERVER["HTTP_IF_MODIFIED_SINCE"])) {
     $last = strtotime($_SERVER["HTTP_IF_MODIFIED_SINCE"]);
 

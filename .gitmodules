@@ -1,3 +1,0 @@
-[submodule "shared"]
-	path = shared
-	url = git://git.php.net/web/shared.git

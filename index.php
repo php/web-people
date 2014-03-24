@@ -36,13 +36,13 @@ $page = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT, array("options" => 
 <tfoot>
 <tr>
 <th>
-    <?php if ($page): ?>
+    <?php if ($page > 1): ?>
     <a href="?page=<?php echo $page-1?>">Previous page</a></th>
     <?php endif ?>
 </th>
 <th></th>
 <th>
-    <?php if ($x == 99): ?>
+    <?php if ($x == 49): ?>
     <a href="?page=<?php echo ++$page?>">Next page</a></th>
     <?php endif ?>
 </th>

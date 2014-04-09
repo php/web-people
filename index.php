@@ -26,7 +26,7 @@ $page = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT, array("options" => 
 <?php foreach (findAllUsers($page) as $x => $user): ?>
     <tr>
         <td class="gravatar"><img src="//www.gravatar.com/avatar/<?php echo md5($user["username"] . "@php.net")?>.jpg" alt="Picture of <?php $user["name"] ?>" height="80" width="80" /></td>
-        <td class="username"><a href="user.php?username=<?php echo $user["username"]?>"><?php echo $user["username"] ?></a></td>
+        <td class="username"><a href="/<?php echo $user["username"]?>"><?php echo $user["username"] ?></a></td>
         <td class="name"><?php echo $user["name"] ?></td>
     </tr>
 <?php endforeach ?>

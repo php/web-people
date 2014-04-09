@@ -9,7 +9,6 @@ $USERNAME = filter_input(INPUT_GET, "username", FILTER_SANITIZE_ENCODED, FILTER_
 site_header("Developers Profile Pages; $USERNAME");
 
 $NFO      = findPHPUser($USERNAME);
-$GITHUB   = findGitHubUser($NFO["name"]);
 $KARMA    = findKarma($USERNAME);
 $PROFILE  = findPHPUserProfile($USERNAME);
 $BUGS     = findAssignedBugs($USERNAME);
@@ -32,22 +31,7 @@ if ($NFO["name"]) {
 }
 ?>
     (<span property="foaf:nick"><?php echo $NFO["username"]?></span>)
-    a member of <a href="http://www.php.net" rel="foaf:Organization">PHP</a>
-<?php
-if (isset($GITHUB["company"])) {
-    echo ', currently working for ', $GITHUB["company"];
-}
-if (isset($GITHUB["location"])) {
-    echo ', living in ';
-    if ($location) {
-        $q = urlencode($location);
-        echo '<a href="http://maps.google.com/?q=', $q, '">', $GITHUB["location"], '</a>';
-    } else {
-        echo $GITHUB["location"];
-    }
-}
-?>
-.
+    a member of <a href="http://www.php.net" rel="foaf:Organization">PHP</a>.
 		</dd>
 <?php if ($email) { ?>
 	<dt>Email</dt>

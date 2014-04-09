@@ -62,32 +62,6 @@ function findPHPUser($username)
     error("No such user");
 }
 
-function findGitHubUser($fullname)
-{
-    // Hiding this for now, since nothing here can be trusted as real. Names are not unique. :)
-    // Possible todo: Allow users to customize this via master/people.
-    return false;
-    $username = getDOMNodeFrom("http://github.com/api/v2/xml/user/search/" . urlencode($fullname), "username");
-    if (!$username) {
-        return;
-    }
-
-    $content = file_get_contents("http://github.com/api/v2/xml/user/show/" . $username->nodeValue);
-
-    $r = new XMLReader;
-    $r->XML($content);
-
-    $retval = array();
-    while($r->read()) {
-        if ($r->nodeType == XMLReader::ELEMENT) {
-            $key = $r->name;
-        } elseif ($r->nodeType == XMLReader::TEXT) {
-            $retval[$key] = $r->value;
-        }
-    }
-    return $retval;
-}
-
 function cached($url, $options = false, $ctx = null)
 {
     $tmpdir = sys_get_temp_dir();

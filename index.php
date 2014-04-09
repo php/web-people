@@ -1,6 +1,4 @@
 <?php
-/* $Id$ */
-
 require "./include/layout.php";
 require "./include/misc.php";
 $USERNAME = filter_input(INPUT_GET, "username", FILTER_SANITIZE_ENCODED, FILTER_FLAG_STRIP_HIGH);
@@ -27,7 +25,7 @@ $page = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT, array("options" => 
 <?php $x = 0 ?>
 <?php foreach (findAllUsers($page) as $x => $user): ?>
     <tr>
-        <td class="gravatar"><img src="http://www.gravatar.com/avatar/<?php echo md5($user["username"] . "@php.net")?>.jpg" alt="Picture of <?php $user["name"] ?>" height="80" width="80" /></td>
+        <td class="gravatar"><img src="//www.gravatar.com/avatar/<?php echo md5($user["username"] . "@php.net")?>.jpg" alt="Picture of <?php $user["name"] ?>" height="80" width="80" /></td>
         <td class="username"><a href="user.php?username=<?php echo $user["username"]?>"><?php echo $user["username"] ?></a></td>
         <td class="name"><?php echo $user["name"] ?></td>
     </tr>
@@ -53,4 +51,3 @@ $page = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT, array("options" => 
 <?php
 site_footer();
 // vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
-

@@ -38,21 +38,6 @@ if ($NFO["name"]) {
 	<dd><a rel="foaf:mbox" href="mailto:<?php echo $email ?>"><?php echo $email ?></a></dd>
 <?php } ?>
 
-<?php if (isset($GITHUB["blog"])) { ?>
-    <dt>Weblog</dt>
-    <dd><a rel="foaf:weblog" href="<?php echo $GITHUB["blog"]?>"><?php echo $GITHUB["blog"]?></a></dd>
-<?php } ?>
-
-<?php if (isset($GITHUB["company"])) { ?>
-	<dt>Employer</dt>
-	<dd><?php echo $GITHUB["company"]?></dd>
-<?php } ?>
-
-<?php if (isset($GITHUB["location"])) { ?>
-	<dt>Location</dt>
-	<dd><?php echo $GITHUB["location"] ?></dd>
-<?php } ?>
-
 </dl>
 
 <?php if ($PROFILE) { ?>

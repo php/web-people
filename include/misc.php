@@ -1,5 +1,4 @@
 <?php
-/* $Id$ */
 
 function getDOMNodeFrom($url, $nodename)
 {
@@ -123,10 +122,9 @@ function findAssignedBugs($username)
 
 function error($errormsg)
 {
-    echo '<p class="warning error">', $errormsg, "</p></section>";
+    echo '<p class="warning">', $errormsg, "</p></section>";
     site_footer();
     exit;
 }
 
 // vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
-

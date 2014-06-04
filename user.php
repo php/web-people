@@ -13,36 +13,31 @@ $KARMA    = findKarma($USERNAME);
 $PROFILE  = findPHPUserProfile($USERNAME);
 $BUGS     = findAssignedBugs($USERNAME);
 $email    = $NFO["username"].'@php.net';
+$gravatar = "//www.gravatar.com/avatar/" . md5($email) . ".jpg?s=460";
 ?>
 
-<section class="mainscreen">
-<div about="#me" typeof="foaf:Person" id="profile">
-<?php
-if ($email) {
-    echo '<span rel="foaf:img"><img rel="foaf:img" src="//www.gravatar.com/avatar/', md5($email), '.jpg" alt="Picture of ', $NFO["name"], '" height="80" width="80" /></span>';
-}
-?>
-	<dl>
-		<dt>Summary</dt>
-		<dd>
-<?php
-if ($NFO["name"]) {
-    echo '<span property="foaf:name">', $NFO["name"], '</span>';
-}
-?>
-    (<span property="foaf:nick"><?php echo $NFO["username"]?></span>)
-    a member of <a href="http://www.php.net" rel="foaf:Organization">PHP</a>.
-		</dd>
-<?php if ($email) { ?>
-	<dt>Email</dt>
-	<dd><a rel="foaf:mbox" href="mailto:<?php echo $email ?>"><?php echo $email ?></a></dd>
-<?php } ?>
+<div class="container">
+<div about="#me" typeof="foaf:Person" id="profile" class="columns">
+<div class="profile-side column">
+    <div rel="foaf:img">
+        <img rel="foaf:img" src="<?php echo $gravatar ?>"
+             alt="Picture of <?php echo $NFO["name"] ?>"
+             height="180" width="180" />
+     </div>
+</div>
+<div class="profile-main column">
 
-</dl>
+    <div class="profile-name">
+        <h1 property="foaf:name"><?php echo $NFO["name"] ?></h1>
+        <h2 property="foaf:nick"><?php echo $NFO["username"]?></h2>
+    </div>
+
+    <h2 id="contact">Contact:</h2>
+    <p class="nudge"><a rel="foaf:mbox" href="mailto:<?php echo $email ?>"><?php echo $email ?></a></p>
 
 <?php if ($PROFILE) { ?>
     <h2 id="blurb">About:</h2>
-    <div class="blurb">
+    <div class="nudge blurb">
         <?php echo $PROFILE; ?>
     </div>
 <?php } ?>
@@ -78,11 +73,12 @@ if ($NFO["name"]) {
     <?php } ?>
 <?php } ?>
 </div>
-
-</section>
+</div>
 <?php
 $SIDEBAR = <<< SIDEBAR
-    <p class="panel"><a href="https://master.php.net/manage/users.php?username=$USERNAME">Edit $USERNAME on master</a></p>
+    <p class="panel">
+        <a href="https://master.php.net/manage/users.php?username=$USERNAME">Edit $USERNAME on master</a>
+    </p>
 SIDEBAR;
 
 site_footer(array("SIDEBAR" => $SIDEBAR));

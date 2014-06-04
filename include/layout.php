@@ -8,8 +8,10 @@ function site_header($TITLE) {
         array("href" => "https://master.php.net/manage/users.php", "text" => "Master"),
     );
     $CSS[] = "/styles/user-autocomplete.css";
+    $CSS[] = "/styles/people.css";
     $SEARCH = array("method" => "get", "action" => "user.php", "placeholder" => "Search profiles", "name" => "username");
     include dirname(__FILE__) . "/../shared/templates/header.inc";
+    //echo '<div><!-- dummy element to get around section.mainscreen:only-child CSS --></div>';
     echo '<section class="mainscreen">';
 }
 

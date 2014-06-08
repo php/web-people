@@ -130,11 +130,11 @@ function formatKarmaLinks($line)
             }
             $url .= ";a=tree;f=".urlencode(trim($subpath, "/"));
         }
-        $line = sprintf('<a href="%s">%s</a> %s', $url, $path, $extra);
     // SVN
     } else {
         $url = "https://svn.php.net/viewvc/".strtr($path, array("/*/" => "/trunk/"));
-        $line = sprintf('<a href="%s">%s</a> %s', $url, $path, $extra);
+        
     }
+    $line = sprintf('<a href="%s" title="%s %s">%s</a>', $url, $path, $extra, $path);
     return $line;
 }

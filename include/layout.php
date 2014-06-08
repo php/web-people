@@ -11,8 +11,6 @@ function site_header($TITLE) {
     $CSS[] = "/styles/people.css";
     $SEARCH = array("method" => "get", "action" => "user.php", "placeholder" => "Search profiles", "name" => "username");
     include dirname(__FILE__) . "/../shared/templates/header.inc";
-    //echo '<div><!-- dummy element to get around section.mainscreen:only-child CSS --></div>';
-    echo '<section class="mainscreen">';
 }
 
 function site_footer($config = array()) {
@@ -21,7 +19,6 @@ function site_footer($config = array()) {
         "//people.php.net/js/userlisting.php",
         "//people.php.net/js/search.js",
     );
-    echo '</section>';
     if (isset($config["SIDEBAR"])) {
         $SECONDSCREEN = $config["SIDEBAR"];
     }

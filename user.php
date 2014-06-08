@@ -15,72 +15,72 @@ $BUGS     = findAssignedBugs($USERNAME);
 $email    = $NFO["username"].'@php.net';
 $gravatar = "//www.gravatar.com/avatar/" . md5($email) . ".jpg?s=460";
 ?>
+<section class="mainscreen">
+    <div class="profile-main">
+        <div class="profile-name">
+            <h1 property="foaf:name"><?php echo $NFO["name"] ?></h1>
+            <h2 property="foaf:nick"><?php echo $NFO["username"]?></h2>
+        </div>
 
-<div class="container">
-<div about="#me" typeof="foaf:Person" id="profile" class="columns">
-<div class="profile-side column">
-    <div rel="foaf:img">
-        <img rel="foaf:img" src="<?php echo $gravatar ?>"
-             alt="Picture of <?php echo $NFO["name"] ?>"
-             height="180" width="180" />
-     </div>
-</div>
-<div class="profile-main column">
+    <?php if ($PROFILE) { ?>
+        <h2 id="blurb">About</h2>
+        <div class="nudge blurb">
+            <?php echo $PROFILE; ?>
+        </div>
+    <?php } ?>
 
-    <div class="profile-name">
-        <h1 property="foaf:name"><?php echo $NFO["name"] ?></h1>
-        <h2 property="foaf:nick"><?php echo $NFO["username"]?></h2>
-    </div>
+    <?php if ($KARMA) { ?>
+        <?php $KARMA = formatKarma($KARMA); ?>
+        <h2 id="karma">Karma</h2>
+        <ul>
+        <?php if (count($KARMA) > 0) { ?>
+            <?php foreach ($KARMA as $path) { ?>
+                <li><?php echo $path ?></li>
+            <?php } ?>
+        <?php } ?>
+        </ul>
+    <?php } ?>
 
-    <h2 id="contact">Contact:</h2>
-    <p class="nudge"><a rel="foaf:mbox" href="mailto:<?php echo $email ?>"><?php echo $email ?></a></p>
+    <?php if ($BUGS) { ?>
+        <h2 id="bugs">Assigned (open) bugs</h2>
+        <ul>
+        <?php foreach ($BUGS as $bug) { ?>
+            <li><a href="<?php echo $bug["link"]?>"><?php echo $bug["title"] ?></a></li>
+        <?php } ?>
+        </ul>
+    <?php } ?>
 
-<?php if ($PROFILE) { ?>
-    <h2 id="blurb">About:</h2>
-    <div class="nudge blurb">
-        <?php echo $PROFILE; ?>
-    </div>
-<?php } ?>
-
-<?php if ($KARMA) { ?>
-    <?php $KARMA = formatKarma($KARMA); ?>
-    <h2 id="karma">Karma:</h2>
-    <ul>
-    <?php if (count($KARMA) > 0) { ?>
-        <?php foreach ($KARMA as $path) { ?>
-            <li><?php echo $path ?></li>
+    <?php if (!empty($NFO["notes"])) { ?>
+        <h2 id="notes">Notes</h2>
+        <?php foreach($NFO["notes"] as $note) { ?>
+        <div class="note">
+            <?php echo $note["entered"] ?>:
+            <?php echo htmlspecialchars($note["note"], ENT_QUOTES, 'UTF-8'); ?>
+        </div>
         <?php } ?>
     <?php } ?>
-    </ul>
-<?php } ?>
-
-<?php if ($BUGS) { ?>
-    <h2 id="bugs">Assigned (open) bugs:</h2>
-    <ul>
-    <?php foreach ($BUGS as $bug) { ?>
-        <li><a href="<?php echo $bug["link"]?>"><?php echo $bug["title"] ?></a></li>
-    <?php } ?>
-    </ul>
-<?php } ?>
-
-<?php if (!empty($NFO["notes"])) { ?>
-    <h2 id="notes">Notes:</h2>
-    <?php foreach($NFO["notes"] as $note) { ?>
-    <div class="note">
-        <?php echo $note["entered"] ?>:
-        <?php echo htmlspecialchars($note["note"], ENT_QUOTES, 'UTF-8'); ?>
     </div>
-    <?php } ?>
-<?php } ?>
-</div>
-</div>
-<?php
-$SIDEBAR = <<< SIDEBAR
-    <p class="panel">
-        <a href="https://master.php.net/manage/users.php?username=$USERNAME">Edit $USERNAME on master</a>
-    </p>
-SIDEBAR;
+</section>
 
-site_footer(array("SIDEBAR" => $SIDEBAR));
+<section class="secondscreen">
+    <div class="profile-side">
+        <div rel="foaf:img">
+            <img rel="foaf:img" src="<?php echo $gravatar ?>"
+                 alt="Picture of <?php echo $NFO["name"] ?>"
+                 height="230" width="230" />
+        </div>
+        <ul class="profile-details">
+            <li><span class="icon-mail"></span> <?php echo $email ?></li>
+            <?php if (is_array($BUGS)) { ?>
+            <li><span class="icon-bug"></span> <?php echo number_format(count($BUGS)) ?> open bugs assigned</li>
+            <?php } ?>
+            <li><span class="icon-edit"></span> <a href="https://master.php.net/manage/users.php?username=<?php echo urlencode($USERNAME) ?>">edit on master</a></li>
+        </ul>
+    </div>
+</section>
+
+<?php
+site_footer();
+
 // vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
 

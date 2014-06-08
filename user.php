@@ -14,6 +14,9 @@ $PROFILE  = findPHPUserProfile($USERNAME);
 $BUGS     = findAssignedBugs($USERNAME);
 $email    = $NFO["username"].'@php.net';
 $gravatar = "//www.gravatar.com/avatar/" . md5($email) . ".jpg?s=460";
+
+$bugs_url   = "https://bugs.php.net/search.php?cmd=display&order_by=ts2&direction=DESC&status=Open&assign=" . urlencode($USERNAME);
+$master_url = "https://master.php.net/manage/users.php?username=" . urlencode($USERNAME);
 ?>
 <section class="mainscreen">
     <div class="profile-main">
@@ -72,9 +75,15 @@ $gravatar = "//www.gravatar.com/avatar/" . md5($email) . ".jpg?s=460";
         <ul class="profile-details">
             <li><span class="icon-mail"></span> <?php echo $email ?></li>
             <?php if (is_array($BUGS)) { ?>
-            <li><span class="icon-bug"></span> <?php echo number_format(count($BUGS)) ?> open bugs assigned</li>
+            <li>
+                <span class="icon-bug"></span>
+                <a href="<?php echo $bugs_url ?>"><?php echo number_format(count($BUGS)) ?> open bugs assigned</a>
+            </li>
             <?php } ?>
-            <li><span class="icon-edit"></span> <a href="https://master.php.net/manage/users.php?username=<?php echo urlencode($USERNAME) ?>">edit on master</a></li>
+            <li>
+                <span class="icon-edit"></span>
+                <a href="<?php echo $master_url ?>">edit on master</a>
+            </li>
         </ul>
     </div>
 </section>

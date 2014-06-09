@@ -1,5 +1,4 @@
 <?php
-/* $Id$ */
 
 function getAllUsers() {
     $opts = array("ignore_errors" => true);
@@ -65,4 +64,3 @@ echo 'var lookup = ' . json_encode($lookup) . ';';
 
 
 // vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
-

@@ -1,6 +1,4 @@
 <?php
-/* $Id$ */
-
 require "./include/layout.php";
 require "./include/misc.php";
 require "./include/karma.php";
@@ -92,4 +90,3 @@ $master_url = "https://master.php.net/manage/users.php?username=" . urlencode($U
 site_footer();
 
 // vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
-

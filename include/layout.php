@@ -3,8 +3,8 @@
 function site_header($TITLE) {
     $SUBDOMAIN = "people";
     $LINKS = array(
-        array("href" => "/user.php", "text" => "Users"),
         array("href" => "https://master.php.net/manage/users.php", "text" => "Master"),
+        array("href" => "https://wiki.php.net/web/people", "text" => "Help"),
     );
     $CSS[] = "/styles/user-autocomplete.css";
     $CSS[] = "/styles/people.css";

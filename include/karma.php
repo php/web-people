@@ -19,8 +19,11 @@ function fetchKarma()
 {
     $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
     $content = cached("https://svn.php.net/repository/SVNROOT/global_avail", false, $ctx);
-    $karma = parseKarma(explode("\n", $content));
-    return $karma;
+    $phpKarma = parseKarma(explode("\n", $content));
+    $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
+    $content = cached("https://svn.php.net/repository/SVNROOT/pear_avail", false, $ctx);
+    $pearKarma = parseKarma(explode("\n", $content));
+    return array_merge($phpKarma, $pearKarma);
 }
 
 function parseKarma(array $avail_lines)

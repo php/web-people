@@ -9,8 +9,8 @@ function findKarma($username)
 
     $mykarma = $karma[$username];
     $retval = array(
-        "avail"   => explode(PATH_SEPARATOR, $mykarma["avail"]),
-        "unavail" => explode(PATH_SEPARATOR, $mykarma["unavail"]),
+        "avail"   => $mykarma["avail"],
+        "unavail" => $mykarma["unavail"],
     );
     return $retval;
 }
@@ -20,10 +20,23 @@ function fetchKarma()
     $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
     $content = cached("https://svn.php.net/repository/SVNROOT/global_avail", false, $ctx);
     $phpKarma = parseKarma(explode("\n", $content));
+
     $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
     $content = cached("https://svn.php.net/repository/SVNROOT/pear_avail", false, $ctx);
     $pearKarma = parseKarma(explode("\n", $content));
-    return array_merge($phpKarma, $pearKarma);
+
+    $allKarma = $phpKarma;
+    foreach ($pearKarma as $user => $userKarma) {
+        if (!array_key_exists($user, $allKarma)) {
+            $allKarma[$user] = $userKarma;
+        } else {
+            foreach (array('avail', 'unavail') as $type) {
+                $allKarma[$user][$type] = array_merge($allKarma[$user][$type], $userKarma[$type]);
+            }
+        }
+    }
+
+    return $allKarma;
 }
 
 function parseKarma(array $avail_lines)
@@ -78,14 +91,6 @@ function parseKarma(array $avail_lines)
                     unset($users[$user][$other_avail][$path]);
                 }
             }
-        }
-    }
-
-    // Stringify paths to save space in APC
-    foreach ($users as $user => $avails) {
-        foreach ($avails as $avail => $paths) {
-            natcasesort($users[$user][$avail]);
-            $users[$user][$avail] = implode(PATH_SEPARATOR, $paths);
         }
     }
 

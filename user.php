@@ -46,7 +46,7 @@ $master_url = "https://master.php.net/manage/users.php?username=" . urlencode($U
         <h2 id="bugs">Assigned (open) bugs</h2>
         <ul>
         <?php foreach ($BUGS as $bug) { ?>
-            <li><a href="<?php echo $bug["link"]?>"><?php echo $bug["title"] ?></a></li>
+            <li><a href="<?php echo $bug["link"]?>"><?php echo htmlspecialchars($bug["title"], ENT_QUOTES, 'UTF-8'); ?></a></li>
         <?php } ?>
         </ul>
     <?php } ?>

@@ -26,7 +26,7 @@ function findAllUsers($batch) {
     $retval = cached($url, false, $ctx);
     $json = json_decode($retval, true);
     if (!is_array($json)) {
-        error("Something happend to master");
+        error("Something happened to master");
     }
     if (isset($json["error"])) {
         error($json["error"]);

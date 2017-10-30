@@ -11,7 +11,13 @@ $('input.search').autocomplete({
     minChars:2, 
     maxHeight:400,
     fnFormatResult: fnFormatSearchResult,
-    onSelect: function(value, data){ window.location = "/" + users[value]["username"]; },
+    onSelect: function(value, data){ 
+        if (window.location.host == 'master.php.net') {
+            window.location = "/manage/users.php?username=" + users[value]["username"];
+        } else {
+            window.location = "/" + users[value]["username"];
+        }
+    },
     lookup: lookup
 });
 

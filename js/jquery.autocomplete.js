@@ -209,7 +209,7 @@
       }
       return ret;
     },
-    
+
     getSuggestions: function(q) {
       var cr, me, ls;
       cr = this.isLocal ? this.getSuggestionsLocal(q) : this.cachedResponse[q];

@@ -48,4 +48,4 @@ $page = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT, array("options" => 
 </div>
 <?php
 site_footer();
-// vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
+// vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 :

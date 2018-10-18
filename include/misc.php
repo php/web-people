@@ -127,4 +127,4 @@ function error($errormsg)
     exit;
 }
 
-// vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
+// vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 :

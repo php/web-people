@@ -140,14 +140,14 @@ function formatKarmaLinks($line)
         }
     // SVN
     } else {
-        // PHP Group members, such as Rasmus, got access to everything. This 
+        // PHP Group members, such as Rasmus, got access to everything. This
         // check prevents broken links to /viewvc/*
         if ($path === '*') {
             return '<strong>This user has karma for everything!</strong>';
         }
 
         $url = "https://svn.php.net/viewvc/".strtr($path, array("/*/" => "/trunk/"));
-        
+
     }
     $line = sprintf('<a href="%s" title="%s %s">%s</a>', $url, $path, $extra, $path);
     return $line;

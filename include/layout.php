@@ -26,4 +26,4 @@ function site_footer($config = array()) {
 
 
 
-// vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
+// vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 :

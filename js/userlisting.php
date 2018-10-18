@@ -63,4 +63,4 @@ echo 'var users = ' . json_encode($user) . ';';
 echo 'var lookup = ' . json_encode($lookup) . ';';
 
 
-// vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 : 
+// vim: set expandtab shiftwidth=4 softtabstop=4 tabstop=4 :

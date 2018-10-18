@@ -9,7 +9,7 @@ function site_header($TITLE) {
     $CSS[] = "/styles/user-autocomplete.css";
     $CSS[] = "/styles/people.css";
     $SEARCH = array("method" => "get", "action" => "user.php", "placeholder" => "Search profiles", "name" => "username");
-    include dirname(__FILE__) . "/../shared/templates/header.inc";
+    include __DIR__ . "/../shared/templates/header.inc";
 }
 
 function site_footer($config = array()) {
@@ -21,7 +21,7 @@ function site_footer($config = array()) {
     if (isset($config["SIDEBAR"])) {
         $SECONDSCREEN = $config["SIDEBAR"];
     }
-    include dirname(__FILE__) . "/../shared/templates/footer.inc";
+    include __DIR__ . "/../shared/templates/footer.inc";
 }
 
 

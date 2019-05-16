@@ -67,7 +67,7 @@ function cached($url, $options = false, $ctx = null)
     $user = sha1($url);
 
     $tmpfile = $tmpdir . "/" . $user;
-    if (file_exists($tmpfile) && filemtime($tmpfile) > strtotime("-1 week")) {
+    if (file_exists($tmpfile) && filemtime($tmpfile) > strtotime("-1 day")) {
         return file_get_contents($tmpfile);
     }
     $content = file_get_contents($url, $options, $ctx);

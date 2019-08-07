@@ -32,6 +32,10 @@ function findAllUsers($page) {
         error($json["error"]);
     }
 
+    usort($json, function ($a, $b) {
+        return strcmp($a["username"], $b["username"]);
+    });
+
     $offset = ($page - 1) * 50;
     return array_slice($json, $offset, 50);
 }

@@ -15,7 +15,7 @@ function getDOMNodeFrom($url, $nodename)
     return $search->item(0);
 }
 
-function findAllUsers($batch) {
+function findAllUsers($page) {
     $opts = array("ignore_errors" => true);
     $ctx = stream_context_create(array("http" => $opts));
     $token = getenv("TOKEN");
@@ -32,8 +32,8 @@ function findAllUsers($batch) {
         error($json["error"]);
     }
 
-    $batch *= 50;
-    return array_slice($json, $batch, 50);
+    $offset = ($page - 1) * 50;
+    return array_slice($json, $offset, 50);
 }
 function findPHPUser($username)
 {

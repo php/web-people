@@ -7,7 +7,7 @@ function getAllUsers() {
     if (!$token) {
         $token = trim(file_get_contents("../token"));
     }
-    $retval = file_get_contents("https://master.php.net/fetch/allusers.php?&token=" . rawurlencode($token), false, $ctx);
+    $retval = file_get_contents("https://main.php.net/fetch/allusers.php?&token=" . rawurlencode($token), false, $ctx);
     if (!$retval) {
         return;
     }

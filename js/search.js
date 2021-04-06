@@ -13,7 +13,7 @@ $(document).ready(function() {
         maxHeight:400,
         fnFormatResult: fnFormatSearchResult,
         onSelect: function(value, data){
-            if (window.location.host == 'master.php.net') {
+            if (window.location.host == 'main.php.net') {
                 window.location = "/manage/users.php?username=" + users[value]["username"];
             } else {
                 window.location = "/" + users[value]["username"];

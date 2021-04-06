@@ -22,11 +22,11 @@ function findAllUsers($page) {
     if (!$token) {
         $token = trim(file_get_contents("token"));
     }
-    $url = "https://master.php.net/fetch/allusers.php?token=" . rawurlencode($token);
+    $url = "https://main.php.net/fetch/allusers.php?token=" . rawurlencode($token);
     $retval = cached($url, false, $ctx);
     $json = json_decode($retval, true);
     if (!is_array($json)) {
-        error("Something happened to master");
+        error("Something happened to main");
     }
     if (isset($json["error"])) {
         error($json["error"]);
@@ -47,11 +47,11 @@ function findPHPUser($username)
     if (!$token) {
         $token = trim(file_get_contents("token"));
     }
-    $url = "https://master.php.net/fetch/allusers.php?token=" . rawurlencode($token);
+    $url = "https://main.php.net/fetch/allusers.php?token=" . rawurlencode($token);
     $retval = cached($url, false, $ctx);
     $json = json_decode($retval, true);
     if (!is_array($json)) {
-        error("Something happend to master");
+        error("Something happend to main");
     }
     if (isset($json["error"])) {
         error($json["error"]);
@@ -90,7 +90,7 @@ function findPHPUserProfile($username)
     if (!$token) {
         $token = trim(file_get_contents("token"));
     }
-    $retval = cached("https://master.php.net/fetch/user-profile.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
+    $retval = cached("https://main.php.net/fetch/user-profile.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
     if (!$retval) {
         $error   = error_get_last();
         // Remove the function name, arguments and all that stuff... we
@@ -101,7 +101,7 @@ function findPHPUserProfile($username)
     }
     $json = json_decode($retval, true);
     if (!is_array($json)) {
-        error("Something happend to master");
+        error("Something happend to main");
     }
     if (isset($json["error"])) {
         error($json["error"]);

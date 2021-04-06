@@ -14,7 +14,7 @@ $email    = $NFO["username"].'@php.net';
 $gravatar = "//www.gravatar.com/avatar/" . md5($email) . ".jpg?s=460";
 
 $bugs_url   = "https://bugs.php.net/search.php?cmd=display&order_by=ts2&direction=DESC&status=Open&assign=" . urlencode($USERNAME);
-$master_url = "https://master.php.net/manage/users.php?username=" . urlencode($USERNAME);
+$main_url = "https://main.php.net/manage/users.php?username=" . urlencode($USERNAME);
 ?>
 <section class="mainscreen">
     <div class="profile-main">
@@ -80,7 +80,7 @@ $master_url = "https://master.php.net/manage/users.php?username=" . urlencode($U
             <?php } ?>
             <li>
                 <span class="icon-edit"></span>
-                <a href="<?php echo $master_url ?>">edit on master</a>
+                <a href="<?php echo $main_url ?>">edit on main</a>
             </li>
         </ul>
     </div>

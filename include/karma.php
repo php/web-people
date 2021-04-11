@@ -18,11 +18,11 @@ function findKarma($username)
 function fetchKarma()
 {
     $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
-    $content = cached("https://svn.php.net/repository/SVNROOT/global_avail", false, $ctx);
+    $content = cached("https://svn.php.net/repository/SVNROOT/global_avail", $ctx);
     $phpKarma = parseKarma(explode("\n", $content));
 
     $ctx = stream_context_create(array("http" => array("ignore_errors" => true)));
-    $content = cached("https://svn.php.net/repository/SVNROOT/pear_avail", false, $ctx);
+    $content = cached("https://svn.php.net/repository/SVNROOT/pear_avail", $ctx);
     $pearKarma = parseKarma(explode("\n", $content));
 
     $allKarma = $phpKarma;

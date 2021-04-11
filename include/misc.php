@@ -23,7 +23,7 @@ function findAllUsers($page) {
         $token = trim(file_get_contents("token"));
     }
     $url = "https://main.php.net/fetch/allusers.php?token=" . rawurlencode($token);
-    $retval = cached($url, false, $ctx);
+    $retval = cached($url, $ctx);
     $json = json_decode($retval, true);
     if (!is_array($json)) {
         error("Something happened to main");
@@ -48,7 +48,7 @@ function findPHPUser($username)
         $token = trim(file_get_contents("token"));
     }
     $url = "https://main.php.net/fetch/allusers.php?token=" . rawurlencode($token);
-    $retval = cached($url, false, $ctx);
+    $retval = cached($url, $ctx);
     $json = json_decode($retval, true);
     if (!is_array($json)) {
         error("Something happend to main");
@@ -65,7 +65,7 @@ function findPHPUser($username)
     error("No such user");
 }
 
-function cached($url, $options = false, $ctx = null)
+function cached($url, $ctx = null)
 {
     $tmpdir = sys_get_temp_dir();
     $user = sha1($url);
@@ -74,7 +74,7 @@ function cached($url, $options = false, $ctx = null)
     if (file_exists($tmpfile) && filemtime($tmpfile) > strtotime("-1 day")) {
         return file_get_contents($tmpfile);
     }
-    $content = file_get_contents($url, $options, $ctx);
+    $content = file_get_contents($url, false, $ctx);
     if ($content) {
         file_put_contents($tmpfile, $content);
     }
@@ -90,7 +90,7 @@ function findPHPUserProfile($username)
     if (!$token) {
         $token = trim(file_get_contents("token"));
     }
-    $retval = cached("https://main.php.net/fetch/user-profile.php?username=" . $username . "&token=" . rawurlencode($token), false, $ctx);
+    $retval = cached("https://main.php.net/fetch/user-profile.php?username=" . $username . "&token=" . rawurlencode($token), $ctx);
     if (!$retval) {
         $error   = error_get_last();
         // Remove the function name, arguments and all that stuff... we

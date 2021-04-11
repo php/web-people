@@ -15,6 +15,17 @@ $page = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT, array("options" => 
 <table class="people">
 	<thead>
 		<tr>
+		    	<th colspan="3" style="border-bottom: 1.5px solid #4F5B93; text-align: center !important;">
+				<?php if ($page > 1): ?>
+		    		<a class="pagination prev" href="?page=<?php echo $page-1?>">« Previous page</a>
+				<?php endif ?>
+		    		<span class="page"><?php echo $page ?></span>
+				<?php if ($x == 49): ?>
+		    		<a class="pagination next" href="?page=<?php echo ++$page?>">Next page »</a>
+				<?php endif ?>
+		    	</th>
+		</tr>
+		<tr>
 			<th></th>
 			<th>Username</th>
 			<th>Full name</th>

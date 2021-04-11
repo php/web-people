@@ -15,7 +15,7 @@ function getDOMNodeFrom($url, $nodename)
     return $search->item(0);
 }
 
-function findAllUsers($page) {
+function fetchAllUsers() {
     $opts = array("ignore_errors" => true);
     $ctx = stream_context_create(array("http" => $opts));
     $token = getenv("TOKEN");
@@ -23,7 +23,7 @@ function findAllUsers($page) {
         $token = trim(file_get_contents("token"));
     }
     $url = "https://main.php.net/fetch/allusers.php?token=" . rawurlencode($token);
-    $retval = cached($url, $ctx);
+    $retval = cached($url, $ctx, "-1 hour");
     $json = json_decode($retval, true);
     if (!is_array($json)) {
         error("Something happened to main");
@@ -31,6 +31,11 @@ function findAllUsers($page) {
     if (isset($json["error"])) {
         error($json["error"]);
     }
+    return $json;
+}
+
+function findAllUsers($page) {
+    $json = fetchAllUsers();
 
     usort($json, function ($a, $b) {
         return strcmp($a["username"], $b["username"]);
@@ -39,23 +44,10 @@ function findAllUsers($page) {
     $offset = ($page - 1) * 50;
     return array_slice($json, $offset, 50);
 }
+
 function findPHPUser($username)
 {
-    $opts = array("ignore_errors" => true);
-    $ctx = stream_context_create(array("http" => $opts));
-    $token = getenv("TOKEN");
-    if (!$token) {
-        $token = trim(file_get_contents("token"));
-    }
-    $url = "https://main.php.net/fetch/allusers.php?token=" . rawurlencode($token);
-    $retval = cached($url, $ctx);
-    $json = json_decode($retval, true);
-    if (!is_array($json)) {
-        error("Something happend to main");
-    }
-    if (isset($json["error"])) {
-        error($json["error"]);
-    }
+    $json = fetchAllUsers();
 
     foreach($json as $k) {
         if ($k["username"] == $username) {
@@ -65,13 +57,13 @@ function findPHPUser($username)
     error("No such user");
 }
 
-function cached($url, $ctx = null)
+function cached($url, $ctx = null, $timeout = "-1 day")
 {
     $tmpdir = sys_get_temp_dir();
     $user = sha1($url);
 
     $tmpfile = $tmpdir . "/" . $user;
-    if (file_exists($tmpfile) && filemtime($tmpfile) > strtotime("-1 day")) {
+    if (file_exists($tmpfile) && filemtime($tmpfile) > strtotime($timeout)) {
         return file_get_contents($tmpfile);
     }
     $content = file_get_contents($url, false, $ctx);

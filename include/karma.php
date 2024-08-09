@@ -46,7 +46,7 @@ function parseKarma(array $avail_lines)
     // First pass, build array of rules
     foreach ($avail_lines as $key => $acl_line) {
         $acl_line = trim($acl_line);
-        if ('' === $acl_line || '#' === $acl_line{0}) {
+        if ('' === $acl_line || '#' === $acl_line[0]) {
             continue;
         }
         list($avail_str, $user_str, $path_str) = explode("|", $acl_line, 3) + array("", "", "");

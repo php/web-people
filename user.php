@@ -1,13 +1,11 @@
 <?php
 require "./include/layout.php";
 require "./include/misc.php";
-require "./include/karma.php";
 $USERNAME = filter_input(INPUT_GET, "username", FILTER_SANITIZE_ENCODED, FILTER_FLAG_STRIP_HIGH);
 
 site_header("Developers Profile Pages; $USERNAME");
 
 $NFO      = findPHPUser($USERNAME);
-$KARMA    = findKarma($USERNAME);
 $PROFILE  = findPHPUserProfile($USERNAME);
 $BUGS     = []; // findAssignedBugs($USERNAME);
 $email    = $NFO["username"].'@php.net';
@@ -28,18 +26,6 @@ $main_url = "https://main.php.net/manage/users.php?username=" . urlencode($USERN
         <div class="nudge blurb">
             <?php echo $PROFILE; ?>
         </div>
-    <?php } ?>
-
-    <?php if ($KARMA) { ?>
-        <?php $KARMA = formatKarma($KARMA); ?>
-        <h2 id="karma">Karma</h2>
-        <ul>
-        <?php if (count($KARMA) > 0) { ?>
-            <?php foreach ($KARMA as $path) { ?>
-                <li><?php echo $path ?></li>
-            <?php } ?>
-        <?php } ?>
-        </ul>
     <?php } ?>
 
     <?php if ($BUGS) { ?>

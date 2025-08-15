@@ -7,7 +7,7 @@ site_header("Developers Profile Pages; $USERNAME");
 
 $NFO      = findPHPUser($USERNAME);
 $PROFILE  = findPHPUserProfile($USERNAME);
-$BUGS     = []; // findAssignedBugs($USERNAME);
+$BUGS     = findAssignedBugs($USERNAME);
 $email    = $NFO["username"].'@php.net';
 $gravatar = "//www.gravatar.com/avatar/" . md5($email) . ".jpg?s=460";
 
